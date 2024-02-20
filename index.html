@@ -43,11 +43,11 @@
     transform: translate(-50%, -50%);
     border-radius: 50%; /* Make it circular */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Add shadow effect */
-    transition: transform 0.3s ease, filter 0.3s ease;
+    transition: opacity 0.5s ease; /* Smooth transition for opacity */
+    opacity: 1; /* Initially visible */
   }
-  .centered-image:hover {
-    transform: translate(-50%, -50%) scale(1.1); /* Scale up on hover */
-    filter: brightness(1.2); /* Increase brightness on hover */
+  .centered-image.hidden {
+    opacity: 0; /* Hide the image */
   }
 </style>
 </head>
@@ -64,11 +64,15 @@
   let currentIndex = 0;
 
   function changeImage() {
-    currentIndex = (currentIndex + 1) % images.length;
     const image = document.getElementById('image');
     const imageLink = document.getElementById('imageLink');
-    image.src = images[currentIndex];
-    imageLink.href = links[currentIndex];
+    image.classList.add('hidden'); // Add 'hidden' class to fade out the image
+    setTimeout(() => {
+      currentIndex = (currentIndex + 1) % images.length;
+      image.src = images[currentIndex];
+      imageLink.href = links[currentIndex];
+      image.classList.remove('hidden'); // Remove 'hidden' class to fade in the new image
+    }, 500); // Wait for the fade out transition to complete before changing the image
   }
 
   setInterval(changeImage, 4000); // Change image every 4 seconds
