@@ -1,94 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Islamic Website</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f0f0f0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .circle-container {
-      position: absolute;
-      top: 50%;
-      transform: translateY(20%);
-      width: 200px;
-      height: 200px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-    .circle {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      overflow: hidden;
-      margin: 20px;
-      position: relative;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      opacity: 0;
-      animation: fadeEffect 12s infinite;
-    }
-    @keyframes fadeEffect {
-      0%, 25% {
-        opacity: 0;
-      }
-      30%, 55% {
-        opacity: 1;
-      }
-      60%, 85% {
-        opacity: 0;
-      }
-      90%, 100% {
-        opacity: 0;
-      }
-    }
-    .circle img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: opacity 0.3s ease;
-    }
-    .circle:hover img {
-      opacity: 0.8;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Background Image with Less Transparency</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-image: url('background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Adjust the transparency here */
+    opacity: 0.8; /* Change this value as needed */
+  }
+</style>
 </head>
 <body>
-
-<div class="circle-container">
-  <div class="circle">
-    <a href="islam.apgo.ink/foundationofislam">
-      <img src="foundationofislam.png" alt="Foundation of Islam">
-    </a>
-  </div>
-
-  <div class="circle">
-    <a href="islam.apgo.ink/allah">
-      <img src="allah.png" alt="Allah">
-    </a>
-  </div>
-
-  <div class="circle">
-    <a href="islam.apgo.ink/noblequran">
-      <img src="noblequran.png" alt="Noble Quran">
-    </a>
-  </div>
-
-  <div class="circle">
-    <a href="islam.apgo.ink/ramadan">
-      <img src="Ramadan.png" alt="Ramadan">
-    </a>
-  </div>
-</div>
-
+<!-- Your content goes here -->
 </body>
 </html>
