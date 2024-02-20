@@ -77,6 +77,25 @@
       setTimeout(function() {
         image.style.transform = "translate(-50%, -50%) scale(0.9)";
         image.style.opacity = "1";
+        
+        // Transition to the third image after 2 seconds
+        setTimeout(function() {
+          // Scale down and fade out current image
+          image.style.transform = "translate(-50%, -50%) scale(1.1)";
+          image.style.opacity = "0";
+          
+          // Change image source and link to the third image
+          setTimeout(function() {
+            image.src = "ramadan.png";
+            imageLink.href = "https://islam.apgo.ink/ramadan";
+            
+            // Scale up and fade in new image
+            setTimeout(function() {
+              image.style.transform = "translate(-50%, -50%) scale(0.9)";
+              image.style.opacity = "1";
+            }, 400); // Adjusted timing for smoother transition
+          }, 400); // Adjusted timing for smoother transition
+        }, 2000); // Transition to the third image after 2 seconds
       }, 400); // Adjusted timing for smoother transition
     }, 400); // Adjusted timing for smoother transition
   }, 2000); // Transition after 2 seconds
