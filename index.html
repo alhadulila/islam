@@ -43,7 +43,7 @@
     transform: translate(-50%, -50%) scale(0.8); /* Initial scale for transition */
     border-radius: 50%; /* Make it circular */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Add shadow effect */
-    transition: transform 1s ease, opacity 1s ease; /* Smooth transition for scaling and opacity */
+    transition: transform 0.8s ease, opacity 0.8s ease; /* Smooth transition for scaling and opacity */
   }
   .centered-image:hover {
     transform: translate(-50%, -50%) scale(0.9); /* Scale up on hover */
@@ -62,7 +62,7 @@
     var imageLink = document.getElementById("image-link");
     
     // Set transition properties
-    image.style.transition = "transform 1s ease, opacity 1s ease";
+    image.style.transition = "transform 0.8s ease, opacity 0.8s ease";
     
     // Scale up and fade out current image
     image.style.transform = "translate(-50%, -50%) scale(1.1)";
@@ -77,8 +77,8 @@
       setTimeout(function() {
         image.style.transform = "translate(-50%, -50%) scale(0.9)";
         image.style.opacity = "1";
-      }, 500); // Half of transition duration
-    }, 500); // Half of transition duration
+      }, 400); // Adjusted timing for smoother transition
+    }, 400); // Adjusted timing for smoother transition
   }, 2000); // Transition after 2 seconds
 </script>
 </body>
