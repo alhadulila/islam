@@ -40,55 +40,39 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0.8); /* Initial scale for transition */
+    transform: translate(-50%, -50%);
     border-radius: 50%; /* Make it circular */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Add shadow effect */
-    transition: transform 0.8s ease, opacity 0.8s ease; /* Smooth transition for scaling and opacity */
-    animation: fadeInOut 8s infinite; /* Animation for fade in and out */
+    transition: transform 0.3s ease, filter 0.3s ease;
   }
   .centered-image:hover {
-    transform: translate(-50%, -50%) scale(0.9); /* Scale up on hover */
-  }
-
-  @keyframes fadeInOut {
-    0%, 100% {
-      opacity: 0;
-    }
-    25%, 75% {
-      opacity: 1;
-    }
+    transform: translate(-50%, -50%) scale(1.1); /* Scale up on hover */
+    filter: brightness(1.2); /* Increase brightness on hover */
   }
 </style>
 </head>
 <body>
 <div class="title">Explore Islam, Peacefully</div>
-<a id="image-link" href="https://islam.apgo.ink/allah" target="_blank">
-  <img id="main-image" src="allah.png" alt="Allah" class="centered-image" width="300">
+<a href="#" id="imageLink" target="_blank">
+  <img src="allah.png" alt="Allah" class="centered-image" id="image" width="300"> <!-- Adjust the width -->
 </a>
 <!-- Your content goes here -->
+
 <script>
-  var images = ["foundationofislam.png", "ramadan.png", "noblequran.png"];
-  var links = ["https://islam.apgo.ink/foundationofislam", "https://islam.apgo.ink/ramadan", "https://islam.apgo.ink/noblequran"];
-  var currentIndex = 0;
+  const images = ['allah.png', 'foundationofislam.png', 'ramadan.png', 'noblequran.png'];
+  const links = ['https://islam.apgo.ink/allah', 'https://islam.apgo.ink/foundationofislam', 'https://islam.apgo.ink/ramadan', 'https://islam.apgo.ink/quran'];
+  let currentIndex = 0;
 
-  function transitionImage() {
-    var image = document.getElementById("main-image");
-    var imageLink = document.getElementById("image-link");
-
-    // Fade out current image
-    image.style.opacity = "0";
-
-    // Change image source and link after fade out
-    setTimeout(function() {
-      currentIndex = (currentIndex + 1) % images.length;
-      image.src = images[currentIndex];
-      imageLink.href = links[currentIndex];
-      image.style.opacity = "1";
-    }, 800); // Delayed to match the animation duration
+  function changeImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    const image = document.getElementById('image');
+    const imageLink = document.getElementById('imageLink');
+    image.src = images[currentIndex];
+    imageLink.href = links[currentIndex];
   }
 
-  // Transition to the next image every 8 seconds
-  setInterval(transitionImage, 8000);
+  setInterval(changeImage, 4000); // Change image every 4 seconds
 </script>
+
 </body>
 </html>
