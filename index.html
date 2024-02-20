@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Background Image with Less Transparency</title>
+<title>Background Image with Custom Transparency</title>
 <style>
   body {
     margin: 0;
@@ -13,7 +13,10 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     /* Adjust the transparency here */
-    opacity: 0.8; /* Change this value as needed */
+    opacity: 0.6; /* Change this value as needed */
+    /* Add a gradient overlay to simulate a shader effect */
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('background.png');
+    background-blend-mode: multiply;
   }
 </style>
 </head>
