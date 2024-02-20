@@ -43,18 +43,22 @@
     transform: translate(-50%, -50%);
     border-radius: 50%; /* Make it circular */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Add shadow effect */
-    transition: opacity 0.5s ease; /* Smooth transition for opacity */
-    opacity: 1; /* Initially visible */
+    transition: transform 0.3s ease, filter 0.3s ease, opacity 0.3s ease; /* Add transition */
+    opacity: 0; /* Initially hide the image */
   }
-  .centered-image.hidden {
-    opacity: 0; /* Hide the image */
+  .centered-image.active {
+    opacity: 1; /* Show the active image */
+  }
+  .centered-image:hover {
+    transform: translate(-50%, -50%) scale(1.1); /* Scale up on hover */
+    filter: brightness(1.2); /* Increase brightness on hover */
   }
 </style>
 </head>
 <body>
 <div class="title">Explore Islam, Peacefully</div>
 <a href="#" id="imageLink" target="_blank">
-  <img src="allah.png" alt="Allah" class="centered-image" id="image" width="300"> <!-- Adjust the width -->
+  <img src="allah.png" alt="Allah" class="centered-image active" id="image" width="300"> <!-- Adjust the width -->
 </a>
 <!-- Your content goes here -->
 
@@ -66,13 +70,24 @@
   function changeImage() {
     const image = document.getElementById('image');
     const imageLink = document.getElementById('imageLink');
-    image.classList.add('hidden'); // Add 'hidden' class to fade out the image
-    setTimeout(() => {
-      currentIndex = (currentIndex + 1) % images.length;
+    
+    // Hide the current image
+    image.classList.remove('active');
+    
+    // Move to the next image
+    currentIndex = (currentIndex + 1) % images.length;
+    
+    // Preload the next image
+    const nextImage = new Image();
+    nextImage.src = images[currentIndex];
+    nextImage.onload = function() {
+      // Set the next image
       image.src = images[currentIndex];
       imageLink.href = links[currentIndex];
-      image.classList.remove('hidden'); // Remove 'hidden' class to fade in the new image
-    }, 500); // Wait for the fade out transition to complete before changing the image
+      
+      // Show the next image
+      image.classList.add('active');
+    };
   }
 
   setInterval(changeImage, 4000); // Change image every 4 seconds
