@@ -40,33 +40,45 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0.8); /* Initial scale for transition */
     border-radius: 50%; /* Make it circular */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Add shadow effect */
-    transition: transform 0.5s ease, filter 0.5s ease, opacity 2s ease; /* Add opacity transition */
-    opacity: 1; /* Initially visible */
+    transition: transform 1s ease, opacity 1s ease; /* Smooth transition for scaling and opacity */
   }
   .centered-image:hover {
-    transform: translate(-50%, -50%) scale(1.1); /* Scale up on hover */
-    filter: brightness(1.2); /* Increase brightness on hover */
+    transform: translate(-50%, -50%) scale(0.9); /* Scale up on hover */
   }
 </style>
 </head>
 <body>
 <div class="title">Explore Islam, Peacefully</div>
 <a id="image-link" href="https://islam.apgo.ink/allah" target="_blank">
-  <img id="main-image" src="allah.png" alt="Allah" class="centered-image" width="400"> <!-- Adjust the width -->
+  <img id="main-image" src="allah.png" alt="Allah" class="centered-image" width="300">
 </a>
 <!-- Your content goes here -->
 <script>
   setTimeout(function() {
-    var mainImage = document.getElementById("main-image");
-    mainImage.style.opacity = 0; // Fade out the current image
+    var image = document.getElementById("main-image");
+    var imageLink = document.getElementById("image-link");
+    
+    // Set transition properties
+    image.style.transition = "transform 1s ease, opacity 1s ease";
+    
+    // Scale up and fade out current image
+    image.style.transform = "translate(-50%, -50%) scale(1.1)";
+    image.style.opacity = "0";
+    
+    // Change image source and link
     setTimeout(function() {
-      mainImage.src = "foundationofislam.png"; // Change the image source
-      mainImage.parentElement.href = "https://islam.apgo.ink/foundationofislam"; // Update the link
-      mainImage.style.opacity = 1; // Fade in the new image
-    }, 1000); // Delay changing the image source after 1 second
+      image.src = "foundationofislam.png";
+      imageLink.href = "https://islam.apgo.ink/foundationofislam";
+      
+      // Scale down and fade in new image
+      setTimeout(function() {
+        image.style.transform = "translate(-50%, -50%) scale(0.9)";
+        image.style.opacity = "1";
+      }, 500); // Half of transition duration
+    }, 500); // Half of transition duration
   }, 2000); // Transition after 2 seconds
 </script>
 </body>
