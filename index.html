@@ -53,9 +53,15 @@
 </head>
 <body>
 <div class="title">Explore Islam, Peacefully</div>
-<a href="https://islam.apgo.ink/allah" target="_blank">
-  <img src="allah.png" alt="Allah" class="centered-image" width="300"> <!-- Adjust the width -->
+<a id="image-link" href="https://islam.apgo.ink/allah" target="_blank">
+  <img id="main-image" src="allah.png" alt="Allah" class="centered-image" width="300">
 </a>
 <!-- Your content goes here -->
+<script>
+  setTimeout(function() {
+    document.getElementById("main-image").src = "foundationofislam.png";
+    document.getElementById("image-link").href = "https://islam.apgo.ink/foundationofislam";
+  }, 3000); // Transition after 3 seconds
+</script>
 </body>
 </html>
