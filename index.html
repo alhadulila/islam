@@ -17,31 +17,29 @@
             align-items: center;
             height: 100vh;
             overflow: hidden;
-            position: relative;
         }
         .gallery {
             display: flex;
             align-items: center;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            position: relative;
         }
         .image {
-            flex: 0 0 150px;
+            flex: 0 0 300px;
             transition: transform 0.3s ease, opacity 0.3s ease;
-            margin: 0 10px;
+            margin: 0 20px;
         }
         .image img {
             width: 100%;
             height: auto;
             border-radius: 10px;
         }
-        .center-image {
-            flex: 0 0 300px;
+        .selected {
+            opacity: 1;
+            transform: scale(1.2);
         }
-        .side-image {
+        .not-selected {
             opacity: 0.5;
-            transform: scale(0.8);
+            transform: scale(1);
         }
         .arrow {
             position: absolute;
@@ -63,10 +61,10 @@
     <div class="gallery-container">
         <div class="arrow arrow-left">&lt;</div>
         <div class="gallery">
-            <div class="image side-image"><img src="foundationofislam.png" alt="Foundation of Islam"></div>
-            <div class="image center-image"><img src="allah.png" alt="Allah"></div>
-            <div class="image side-image"><img src="noblequran.png" alt="Noble Quran"></div>
-            <div class="image side-image"><img src="ramadan.png" alt="Ramadan"></div>
+            <div class="image not-selected"><img src="foundationofislam.png" alt="Foundation of Islam"></div>
+            <div class="image selected"><img src="allah.png" alt="Allah"></div>
+            <div class="image not-selected"><img src="noblequran.png" alt="Noble Quran"></div>
+            <div class="image not-selected"><img src="ramadan.png" alt="Ramadan"></div>
         </div>
         <div class="arrow arrow-right">&gt;</div>
     </div>
@@ -79,10 +77,13 @@
         function updateGallery() {
             images.forEach((image, index) => {
                 const offset = index - currentIndex;
-                const opacity = Math.abs(offset) < 1 ? 1 : 0.5;
-                const scale = Math.abs(offset) < 1 ? 1 : 0.8;
-                image.style.opacity = opacity;
-                image.style.transform = `scale(${scale})`;
+                if (offset === 0) {
+                    image.classList.add('selected');
+                    image.classList.remove('not-selected');
+                } else {
+                    image.classList.remove('selected');
+                    image.classList.add('not-selected');
+                }
             });
         }
 
