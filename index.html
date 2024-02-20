@@ -9,25 +9,27 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #333;
+            background-color: #222;
             color: #fff;
             text-align: center;
-            padding-top: 50px;
         }
         .gallery-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 80vh;
+            height: 100vh;
             overflow: hidden;
+            position: relative;
         }
         .gallery {
             display: flex;
             align-items: center;
-            position: relative;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
         .image {
-            flex: 0 0 100px;
+            flex: 0 0 150px;
             transition: transform 0.3s ease, opacity 0.3s ease;
             margin: 0 10px;
         }
@@ -39,11 +41,10 @@
         .selected {
             opacity: 1;
             transform: scale(1.5);
-            flex: 0 0 300px;
         }
         .not-selected {
             opacity: 0.5;
-            transform: scale(0.5);
+            transform: scale(0.8);
         }
         .arrow {
             position: absolute;
@@ -52,6 +53,7 @@
             font-size: 24px;
             cursor: pointer;
             color: #fff;
+            z-index: 1;
         }
         .arrow-left {
             left: 10px;
@@ -62,19 +64,16 @@
         .title {
             font-size: 36px;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px #000;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
-        .instruction {
+        .subtitle {
             font-size: 18px;
-            opacity: 0.7;
-            margin-bottom: 20px;
+            margin-top: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
 <body>
-    <div class="title">Explore Islam Peacefully</div>
-    <div class="instruction">Use arrow keys to navigate and Enter key to select</div>
-
     <div class="gallery-container">
         <div class="arrow arrow-left">&lt;</div>
         <div class="gallery">
@@ -86,19 +85,18 @@
         <div class="arrow arrow-right">&gt;</div>
     </div>
 
+    <div class="title">Explore Islam Peacefully</div>
+    <div class="subtitle">Use arrow keys to navigate and enter key to select</div>
+
     <script>
         const images = document.querySelectorAll('.image');
 
         let currentIndex = 1;
 
         function updateGallery() {
-            const containerWidth = document.querySelector('.gallery-container').offsetWidth;
-            const imageWidth = document.querySelector('.selected').offsetWidth;
-            const offset = containerWidth / 2 - imageWidth / 2;
-            document.querySelector('.gallery').style.transform = `translateX(-${offset}px)`;
             images.forEach((image, index) => {
-                const distance = Math.abs(index - currentIndex);
-                if (index === currentIndex) {
+                const offset = index - currentIndex;
+                if (offset === 0) {
                     image.classList.add('selected');
                     image.classList.remove('not-selected');
                 } else {
@@ -131,8 +129,6 @@
             } else if (event.key === 'ArrowRight' && currentIndex < images.length - 1) {
                 currentIndex++;
                 updateGallery();
-            } else if (event.key === 'Enter') {
-                // Handle selection action
             }
         });
     </script>
