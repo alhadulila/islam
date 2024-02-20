@@ -15,10 +15,17 @@
     margin: 0;
   }
 
+  /* Style for the container */
+  .container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    max-width: 1200px; /* Limit maximum width */
+  }
+
   /* Style for the squircles */
   .squircle {
-    width: 40vw; /* Adjust width to fit the screen */
-    height: auto; /* Maintain aspect ratio */
+    flex: 1; /* Equal width for all squircles */
     border-radius: 50%;
     background-color: #eaeaea; /* Default background color */
     margin: 20px;
@@ -42,33 +49,27 @@
 </head>
 <body>
 
-<!-- Squircle for Foundation of Islam -->
-<a href="islam.apgo.ink/foundationofislam">
-  <div class="squircle">
+<div class="container">
+  <!-- Squircle for Foundation of Islam -->
+  <a href="islam.apgo.ink/foundationofislam" class="squircle">
     <img src="foundationofislam.png" alt="Foundation of Islam">
-  </div>
-</a>
+  </a>
 
-<!-- Squircle for Allah -->
-<a href="islam.apgo.ink/allah">
-  <div class="squircle">
+  <!-- Squircle for Allah -->
+  <a href="islam.apgo.ink/allah" class="squircle">
     <img src="allah.png" alt="Allah">
-  </div>
-</a>
+  </a>
 
-<!-- Squircle for Noble Quran -->
-<a href="islam.apgo.ink/noblequran">
-  <div class="squircle">
+  <!-- Squircle for Noble Quran -->
+  <a href="islam.apgo.ink/noblequran" class="squircle">
     <img src="noblequran.png" alt="Noble Quran">
-  </div>
-</a>
+  </a>
 
-<!-- Squircle for Ramadan -->
-<a href="islam.apgo.ink/ramadan">
-  <div class="squircle">
+  <!-- Squircle for Ramadan -->
+  <a href="islam.apgo.ink/ramadan" class="squircle">
     <img src="ramadan.png" alt="Ramadan">
-  </div>
-</a>
+  </a>
+</div>
 
 </body>
 </html>
