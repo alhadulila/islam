@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Background Image with Lower Opacity</title>
+<title>Dimmed Background Image</title>
 <style>
   body {
     margin: 0;
@@ -11,10 +11,9 @@
     overflow: hidden; /* Hide overflow content */
     position: relative; /* Make sure the container is positioned */
     height: 100vh; /* Make sure the container takes full viewport height */
-    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('background.png') no-repeat;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('background.png') no-repeat;
     background-size: cover;
     background-position: center center; /* Display the center part of the background image */
-    opacity: 0.6; /* Lower opacity to make it darker */
   }
 </style>
 </head>
