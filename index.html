@@ -10,6 +10,21 @@
       margin: 0;
       padding: 0;
       background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .circle-container {
+      position: absolute;
+      top: 50%;
+      transform: translateY(20%);
+      width: 200px;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
     }
     .circle {
       width: 200px;
@@ -19,10 +34,22 @@
       margin: 20px;
       position: relative;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      transition: transform 0.3s ease;
+      opacity: 0;
+      animation: fadeEffect 12s infinite;
     }
-    .circle:hover {
-      transform: scale(1.1);
+    @keyframes fadeEffect {
+      0%, 25% {
+        opacity: 0;
+      }
+      30%, 55% {
+        opacity: 1;
+      }
+      60%, 85% {
+        opacity: 0;
+      }
+      90%, 100% {
+        opacity: 0;
+      }
     }
     .circle img {
       width: 100%;
@@ -37,28 +64,30 @@
 </head>
 <body>
 
-<div class="circle">
-  <a href="islam.apgo.ink/foundationofislam">
-    <img src="foundationofislam.png" alt="Foundation of Islam">
-  </a>
-</div>
+<div class="circle-container">
+  <div class="circle">
+    <a href="islam.apgo.ink/foundationofislam">
+      <img src="foundationofislam.png" alt="Foundation of Islam">
+    </a>
+  </div>
 
-<div class="circle">
-  <a href="islam.apgo.ink/allah">
-    <img src="allah.png" alt="Allah">
-  </a>
-</div>
+  <div class="circle">
+    <a href="islam.apgo.ink/allah">
+      <img src="allah.png" alt="Allah">
+    </a>
+  </div>
 
-<div class="circle">
-  <a href="islam.apgo.ink/noblequran">
-    <img src="noblequran.png" alt="Noble Quran">
-  </a>
-</div>
+  <div class="circle">
+    <a href="islam.apgo.ink/noblequran">
+      <img src="noblequran.png" alt="Noble Quran">
+    </a>
+  </div>
 
-<div class="circle">
-  <a href="islam.apgo.ink/ramadan">
-    <img src="Ramadan.png" alt="Ramadan">
-  </a>
+  <div class="circle">
+    <a href="islam.apgo.ink/ramadan">
+      <img src="Ramadan.png" alt="Ramadan">
+    </a>
+  </div>
 </div>
 
 </body>
