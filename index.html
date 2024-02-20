@@ -44,7 +44,6 @@
     border-radius: 50%; /* Make it circular */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Add shadow effect */
     opacity: 1; /* Start with full opacity */
-    transition: opacity 2s ease; /* Smooth transition for opacity */
   }
   .centered-image:hover {
     transform: translate(-50%, -50%) scale(1.1); /* Scale up on hover */
@@ -61,12 +60,23 @@
 <script>
   setTimeout(function() {
     var mainImage = document.getElementById("main-image");
-    mainImage.style.opacity = "0"; // Start fading out the first image
-    setTimeout(function() {
-      mainImage.src = "foundationofislam.png"; // Change the image source
-      mainImage.style.opacity = "1"; // Start fading in the second image
-      document.getElementById("image-link").href = "https://islam.apgo.ink/foundationofislam"; // Change the link
-    }, 2000); // Transition after 2 seconds
+    var opacity = 1; // Initial opacity value
+    var intervalId = setInterval(function() {
+      opacity -= 0.01; // Decrease opacity gradually
+      mainImage.style.opacity = opacity; // Set opacity
+      if (opacity <= 0) { // Once opacity is fully faded out
+        clearInterval(intervalId); // Stop the interval
+        mainImage.src = "foundationofislam.png"; // Change image source
+        var fadeInIntervalId = setInterval(function() {
+          opacity += 0.01; // Increase opacity gradually
+          mainImage.style.opacity = opacity; // Set opacity
+          if (opacity >= 1) { // Once opacity is fully faded in
+            clearInterval(fadeInIntervalId); // Stop the interval
+            document.getElementById("image-link").href = "https://islam.apgo.ink/foundationofislam"; // Change the link
+          }
+        }, 20); // Increase opacity every 20 milliseconds (adjust for smoother/faster transition)
+      }
+    }, 20); // Decrease opacity every 20 milliseconds (adjust for smoother/faster transition)
   }, 2000); // Start transition after 2 seconds
 </script>
 </body>
