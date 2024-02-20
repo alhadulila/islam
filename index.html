@@ -3,46 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Explore Islam Peacefully</title>
+<title>Islamic Website</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 <style>
   /* Style for the body */
   body {
     background-color: #333; /* Dark background color */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    font-family: 'Open Sans', sans-serif;
+    color: #fff; /* White text color */
     margin: 0;
-  }
-
-  /* Style for the title */
-  h1 {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 36px;
-    color: #fff;
-    text-align: center;
-    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3); /* Glowing effect */
-    margin-bottom: 20px;
   }
 
   /* Style for the container */
   .container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    flex-wrap: wrap;
     max-width: 90%; /* Limit maximum width */
-    margin-top: 20px;
+    margin: auto;
+    padding: 20px;
   }
 
-  /* Style for the circles */
-  .circle {
-    width: 200px; /* Size of the circles */
-    height: 200px; /* Size of the circles */
+  /* Style for the title */
+  .title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  /* Style for the rows */
+  .row {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  /* Style for the squircles */
+  .squircle {
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
-    background-color: transparent; /* Transparent background */
-    margin: 20px;
+    background-color: #eaeaea; /* Default background color */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
     transition: all 0.3s ease; /* Transition effect for smooth hover */
     overflow: hidden;
@@ -52,13 +55,13 @@
   }
 
   /* Hover effect */
-  .circle:hover {
+  .squircle:hover {
     transform: scale(1.1); /* Scale effect on hover */
     filter: brightness(120%); /* Brightness effect on hover */
   }
 
   /* Style for the images */
-  .circle img {
+  .squircle img {
     width: 80%;
     height: auto;
   }
@@ -66,30 +69,35 @@
 </head>
 <body>
 
-<h1>Explore Islam Peacefully</h1>
-
 <div class="container">
-  <!-- Circle for Foundation of Islam -->
-  <a href="https://islam.apgo.ink/foundationofislam" class="circle">
-    <img src="foundationofislam.png" alt="Foundation of Islam">
-  </a>
+  <!-- Title -->
+  <div class="title">Explore Islam Peacefully</div>
 
-  <!-- Circle for Allah -->
-  <a href="https://islam.apgo.ink/allah" class="circle">
-    <img src="allah.png" alt="Allah">
-  </a>
-</div>
+  <!-- First row -->
+  <div class="row">
+    <!-- Squircle for Foundation of Islam -->
+    <a href="https://islam.apgo.ink/foundationofislam" class="squircle">
+      <img src="foundationofislam.png" alt="Foundation of Islam">
+    </a>
 
-<div class="container">
-  <!-- Circle for Noble Quran -->
-  <a href="https://islam.apgo.ink/noblequran" class="circle">
-    <img src="noblequran.png" alt="Noble Quran">
-  </a>
+    <!-- Squircle for Allah -->
+    <a href="https://islam.apgo.ink/allah" class="squircle">
+      <img src="allah.png" alt="Allah">
+    </a>
+  </div>
 
-  <!-- Circle for Ramadan -->
-  <a href="https://islam.apgo.ink/ramadan" class="circle">
-    <img src="ramadan.png" alt="Ramadan">
-  </a>
+  <!-- Second row -->
+  <div class="row">
+    <!-- Squircle for Noble Quran -->
+    <a href="https://islam.apgo.ink/noblequran" class="squircle">
+      <img src="noblequran.png" alt="Noble Quran">
+    </a>
+
+    <!-- Squircle for Ramadan -->
+    <a href="https://islam.apgo.ink/ramadan" class="squircle">
+      <img src="ramadan.png" alt="Ramadan">
+    </a>
+  </div>
 </div>
 
 </body>
