@@ -18,12 +18,17 @@
             justify-content: center;
             height: 100vh;
         }
+        .row {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
         .circle {
             width: 200px;
             height: 200px;
             border-radius: 50%;
             overflow: hidden;
-            margin: 10px;
+            margin: 0 10px;
             position: relative;
             cursor: pointer;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
@@ -42,18 +47,22 @@
 </head>
 <body>
     <div class="container">
-        <a href="islam.apgo.ink/foundationofislam" class="circle">
-            <img src="foundationofislam.png" alt="Foundation of Islam">
-        </a>
-        <a href="islam.apgo.ink/allah" class="circle">
-            <img src="allah.png" alt="Allah">
-        </a>
-        <a href="islam.apgo.ink/noblequran" class="circle">
-            <img src="noblequran.png" alt="Noble Quran">
-        </a>
-        <a href="islam.apgo.ink/ramadan" class="circle">
-            <img src="ramadan.png" alt="Ramadan">
-        </a>
+        <div class="row">
+            <a href="islam.apgo.ink/foundationofislam" class="circle">
+                <img src="foundationofislam.png" alt="Foundation of Islam">
+            </a>
+            <a href="islam.apgo.ink/allah" class="circle">
+                <img src="allah.png" alt="Allah">
+            </a>
+        </div>
+        <div class="row">
+            <a href="islam.apgo.ink/noblequran" class="circle">
+                <img src="noblequran.png" alt="Noble Quran">
+            </a>
+            <a href="islam.apgo.ink/ramadan" class="circle">
+                <img src="ramadan.png" alt="Ramadan">
+            </a>
+        </div>
     </div>
 </body>
 </html>
