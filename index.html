@@ -12,150 +12,65 @@
             background-color: #222;
             color: #fff;
             text-align: center;
-        }
-        .carousel-container {
-            position: relative;
-            overflow: hidden;
-            width: 100%;
             height: 100vh;
             display: flex;
+            align-items: center;
             justify-content: center;
-            align-items: center;
         }
-        .carousel-inner {
-            display: flex;
-            align-items: center;
+        .image-container {
             position: relative;
+            width: 500px;
+            height: 500px;
+            overflow: hidden;
+        }
+        .image {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-        }
-        .carousel-item {
-            flex: 0 0 300px;
-            transition: transform 0.8s ease, opacity 0.8s ease;
-            margin: 0 10px;
-            border-radius: 50%;
-            overflow: hidden;
-            display: none;
-        }
-        .carousel-item img {
-            width: 100%;
-            height: auto;
-            border-radius: 50%;
-        }
-        .selected {
-            opacity: 1;
-            transform: scale(1.2);
-        }
-        .not-selected {
             opacity: 0;
-            transform: scale(0.8);
-        }
-        .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 24px;
+            transition: opacity 1s ease-in-out;
+            border-radius: 50%;
             cursor: pointer;
-            color: #fff;
-            z-index: 1;
         }
-        .arrow-left {
-            left: 10px;
+        .image:hover {
+            transform: scale(1.1);
         }
-        .arrow-right {
-            right: 10px;
-        }
-        .title {
-            display: none;
-            font-size: 36px;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            animation: glow 1s infinite alternate;
-        }
-        .description {
-            display: none;
-            font-size: 18px;
-            margin-bottom: 20px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-            animation: glow 1s infinite alternate;
-        }
-        @keyframes glow {
-            from {
-                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            }
-            to {
-                text-shadow: 4px 4px 8px rgba(255, 255, 255, 0.8);
-            }
+        .image.visible {
+            opacity: 1;
         }
     </style>
 </head>
 <body>
-    <div class="carousel-container">
-        <div class="carousel-inner">
-            <div class="carousel-item not-selected"><img src="foundationofislam.png" alt="Foundation of Islam"></div>
-            <div class="carousel-item selected"><img src="allah.png" alt="Allah"></div>
-            <div class="carousel-item not-selected"><img src="noblequran.png" alt="Noble Quran"></div>
-            <div class="carousel-item not-selected"><img src="ramadan.png" alt="Ramadan"></div>
-        </div>
+    <div class="image-container">
+        <img class="image" src="foundationofislam.png" alt="Foundation of Islam">
+        <img class="image" src="allah.png" alt="Allah">
+        <img class="image" src="noblequran.png" alt="Noble Quran">
+        <img class="image" src="ramadan.png" alt="Ramadan">
     </div>
 
-    <div class="title">Explore Islam Peacefully</div>
-    <div class="description">Use arrow keys to navigate and enter key to select</div>
-
-    <div class="arrow arrow-left">&lt;</div>
-    <div class="arrow arrow-right">&gt;</div>
-
     <script>
-        const items = document.querySelectorAll('.carousel-item');
-        const title = document.querySelector('.title');
-        const description = document.querySelector('.description');
-        let currentIndex = 1;
+        const images = document.querySelectorAll('.image');
+        let currentIndex = 0;
 
-        function updateCarousel() {
-            items.forEach((item, index) => {
-                const offset = index - currentIndex;
-                if (offset === 0) {
-                    item.classList.add('selected');
-                    item.classList.remove('not-selected');
-                } else {
-                    item.classList.remove('selected');
-                    item.classList.add('not-selected');
-                }
+        function showNextImage() {
+            const currentImage = images[currentIndex];
+            const nextIndex = (currentIndex + 1) % images.length;
+            const nextImage = images[nextIndex];
+            
+            currentImage.classList.remove('visible');
+            nextImage.classList.add('visible');
+            
+            currentIndex = nextIndex;
+        }
+
+        setInterval(showNextImage, 3000);
+
+        images.forEach(image => {
+            image.addEventListener('click', () => {
+                // Handle click event here
             });
-        }
-
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % items.length;
-            updateCarousel();
-            if (currentIndex === 0) {
-                title.style.display = 'block';
-                description.style.display = 'block';
-            } else {
-                title.style.display = 'none';
-                description.style.display = 'none';
-            }
-        }
-
-        setInterval(nextSlide, 3000);
-
-        document.querySelector('.arrow-left').addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + items.length) % items.length;
-            updateCarousel();
-        });
-
-        document.querySelector('.arrow-right').addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % items.length;
-            updateCarousel();
-        });
-
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowLeft') {
-                currentIndex = (currentIndex - 1 + items.length) % items.length;
-                updateCarousel();
-            } else if (event.key === 'ArrowRight') {
-                currentIndex = (currentIndex + 1) % items.length;
-                updateCarousel();
-            }
         });
     </script>
 </body>
