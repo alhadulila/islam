@@ -43,7 +43,7 @@
     transform: translate(-50%, -50%);
     border-radius: 50%; /* Make it circular */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Add shadow effect */
-    transition: transform 0.3s ease, filter 0.3s ease;
+    transition: opacity 2s ease; /* Smooth transition for opacity */
   }
   .centered-image:hover {
     transform: translate(-50%, -50%) scale(1.1); /* Scale up on hover */
@@ -59,9 +59,14 @@
 <!-- Your content goes here -->
 <script>
   setTimeout(function() {
-    document.getElementById("main-image").src = "foundationofislam.png";
-    document.getElementById("image-link").href = "https://islam.apgo.ink/foundationofislam";
-  }, 3000); // Transition after 3 seconds
+    var mainImage = document.getElementById("main-image");
+    mainImage.style.opacity = "0"; // Fade out the first image
+    setTimeout(function() {
+      mainImage.src = "foundationofislam.png"; // Change the image source
+      mainImage.style.opacity = "1"; // Fade in the second image
+      document.getElementById("image-link").href = "https://islam.apgo.ink/foundationofislam"; // Change the link
+    }, 2000); // Transition after 2 seconds
+  }, 2000); // Start transition after 2 seconds
 </script>
 </body>
 </html>
