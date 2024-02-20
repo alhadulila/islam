@@ -3,106 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Islam Website</title>
+    <title>Islam Gallery</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f2f2f2;
-            overflow: hidden;
         }
-        .container {
+        .gallery-container {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             overflow: hidden;
         }
-        .carousel {
+        .gallery {
             display: flex;
+            align-items: center;
             position: relative;
         }
-        .item {
-            flex: 1;
-            max-width: 200px;
-            transition: all 0.3s ease;
-            opacity: 0.5;
-            transform: scale(0.8);
+        .image {
+            flex: 0 0 300px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
             margin: 0 20px;
-            cursor: pointer;
         }
-        .item.selected {
+        .image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .center-image {
             opacity: 1;
-            transform: scale(1);
-            z-index: 1;
+            transform: scale(1.2);
         }
-        .item.previous,
-        .item.next {
-            position: absolute;
+        .side-image {
             opacity: 0.5;
-            transition: all 0.3s ease;
+            transform: scale(1);
         }
-        .item.previous {
-            transform: translateX(-100%) scale(0.8);
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
         }
-        .item.next {
-            transform: translateX(100%) scale(0.8);
+        .arrow-left {
+            left: 10px;
+        }
+        .arrow-right {
+            right: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="carousel">
-            <div class="item previous">
-                <img src="previous_image.png" alt="Previous">
-            </div>
-            <div class="item selected">
-                <img src="selected_image.png" alt="Selected">
-            </div>
-            <div class="item next">
-                <img src="next_image.png" alt="Next">
-            </div>
+    <div class="gallery-container">
+        <div class="arrow arrow-left">&lt;</div>
+        <div class="gallery">
+            <div class="image side-image"><img src="foundationofislam.png" alt="Foundation of Islam"></div>
+            <div class="image center-image"><img src="allah.png" alt="Allah"></div>
+            <div class="image side-image"><img src="noblequran.png" alt="Noble Quran"></div>
+            <div class="image side-image"><img src="ramadan.png" alt="Ramadan"></div>
         </div>
+        <div class="arrow arrow-right">&gt;</div>
     </div>
 
     <script>
-        const items = document.querySelectorAll('.item');
-        let selectedIndex = 1; // Start with the middle item as selected
+        const images = document.querySelectorAll('.image');
 
-        function updateCarousel() {
-            items.forEach((item, index) => {
-                if (index === selectedIndex) {
-                    item.classList.add('selected');
-                } else {
-                    item.classList.remove('selected');
-                }
+        let currentIndex = 1;
 
-                if (index === selectedIndex - 1) {
-                    item.classList.add('previous');
-                } else {
-                    item.classList.remove('previous');
-                }
-
-                if (index === selectedIndex + 1) {
-                    item.classList.add('next');
-                } else {
-                    item.classList.remove('next');
-                }
+        function updateGallery() {
+            images.forEach((image, index) => {
+                const offset = index - currentIndex;
+                const opacity = Math.abs(offset) < 2 ? 1 - Math.abs(offset) * 0.5 : 0.5;
+                const scale = Math.abs(offset) < 2 ? 1 + Math.abs(offset) * 0.1 : 1;
+                image.style.opacity = opacity;
+                image.style.transform = `scale(${scale})`;
             });
         }
 
-        // Function to handle arrow key presses
-        function handleKeyPress(event) {
-            if (event.key === 'ArrowLeft') {
-                selectedIndex = Math.max(selectedIndex - 1, 0);
-            } else if (event.key === 'ArrowRight') {
-                selectedIndex = Math.min(selectedIndex + 1, items.length - 1);
-            }
-            updateCarousel();
-        }
+        updateGallery();
 
-        document.addEventListener('keydown', handleKeyPress);
+        document.querySelector('.arrow-left').addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateGallery();
+            }
+        });
+
+        document.querySelector('.arrow-right').addEventListener('click', () => {
+            if (currentIndex < images.length - 1) {
+                currentIndex++;
+                updateGallery();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowLeft' && currentIndex > 0) {
+                currentIndex--;
+                updateGallery();
+            } else if (event.key === 'ArrowRight' && currentIndex < images.length - 1) {
+                currentIndex++;
+                updateGallery();
+            }
+        });
     </script>
 </body>
 </html>
