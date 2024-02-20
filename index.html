@@ -36,10 +36,26 @@
     margin: 0 auto; /* Center the curved underline */
     margin-top: 10px; /* Adjust the spacing between the title and the underline */
   }
+  .centered-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%; /* Make it circular */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Add shadow effect */
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+  .centered-image:hover {
+    transform: translate(-50%, -50%) scale(1.1); /* Scale up on hover */
+    filter: brightness(1.2); /* Increase brightness on hover */
+  }
 </style>
 </head>
 <body>
 <div class="title">Explore Islam, Peacefully</div>
+<a href="https://islam.apgo.ink/allah" target="_blank">
+  <img src="allah.png" alt="Allah" class="centered-image" width="200">
+</a>
 <!-- Your content goes here -->
 </body>
 </html>
