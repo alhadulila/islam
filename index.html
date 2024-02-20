@@ -43,7 +43,8 @@
     transform: translate(-50%, -50%);
     border-radius: 50%; /* Make it circular */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Add shadow effect */
-    opacity: 1; /* Start with full opacity */
+    transition: transform 0.5s ease, filter 0.5s ease, opacity 2s ease; /* Add opacity transition */
+    opacity: 1; /* Initially visible */
   }
   .centered-image:hover {
     transform: translate(-50%, -50%) scale(1.1); /* Scale up on hover */
@@ -54,29 +55,19 @@
 <body>
 <div class="title">Explore Islam, Peacefully</div>
 <a id="image-link" href="https://islam.apgo.ink/allah" target="_blank">
-  <img id="main-image" src="allah.png" alt="Allah" class="centered-image" width="300">
+  <img id="main-image" src="allah.png" alt="Allah" class="centered-image" width="400"> <!-- Adjust the width -->
 </a>
 <!-- Your content goes here -->
 <script>
-  var mainImage = document.getElementById("main-image");
-  var opacity = 1; // Initial opacity value
-  var intervalId = setInterval(function() {
-    opacity -= 0.01; // Decrease opacity gradually for the first image
-    mainImage.style.opacity = opacity; // Set opacity for the first image
-    if (opacity <= 0) { // Once opacity is fully faded out
-      clearInterval(intervalId); // Stop the interval
-      mainImage.src = "foundationofislam.png"; // Change image source
-      opacity = 0; // Reset opacity for the second image
-      var fadeInIntervalId = setInterval(function() {
-        opacity += 0.01; // Increase opacity gradually for the second image
-        mainImage.style.opacity = opacity; // Set opacity for the second image
-        if (opacity >= 1) { // Once opacity is fully faded in
-          clearInterval(fadeInIntervalId); // Stop the interval
-          document.getElementById("image-link").href = "https://islam.apgo.ink/foundationofislam"; // Change the link
-        }
-      }, 20); // Increase opacity every 20 milliseconds (adjust for smoother/faster transition)
-    }
-  }, 20); // Decrease opacity every 20 milliseconds (adjust for smoother/faster transition)
+  setTimeout(function() {
+    var mainImage = document.getElementById("main-image");
+    mainImage.style.opacity = 0; // Fade out the current image
+    setTimeout(function() {
+      mainImage.src = "foundationofislam.png"; // Change the image source
+      mainImage.parentElement.href = "https://islam.apgo.ink/foundationofislam"; // Update the link
+      mainImage.style.opacity = 1; // Fade in the new image
+    }, 1000); // Delay changing the image source after 1 second
+  }, 2000); // Transition after 2 seconds
 </script>
 </body>
 </html>
