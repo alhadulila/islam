@@ -44,9 +44,19 @@
     border-radius: 50%; /* Make it circular */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Add shadow effect */
     transition: transform 0.8s ease, opacity 0.8s ease; /* Smooth transition for scaling and opacity */
+    animation: fadeInOut 8s infinite; /* Animation for fade in and out */
   }
   .centered-image:hover {
     transform: translate(-50%, -50%) scale(0.9); /* Scale up on hover */
+  }
+
+  @keyframes fadeInOut {
+    0%, 100% {
+      opacity: 0;
+    }
+    25%, 75% {
+      opacity: 1;
+    }
   }
 </style>
 </head>
@@ -57,67 +67,28 @@
 </a>
 <!-- Your content goes here -->
 <script>
-  setTimeout(function() {
+  var images = ["foundationofislam.png", "ramadan.png", "noblequran.png"];
+  var links = ["https://islam.apgo.ink/foundationofislam", "https://islam.apgo.ink/ramadan", "https://islam.apgo.ink/noblequran"];
+  var currentIndex = 0;
+
+  function transitionImage() {
     var image = document.getElementById("main-image");
     var imageLink = document.getElementById("image-link");
-    
-    // Set transition properties
-    image.style.transition = "transform 0.8s ease, opacity 0.8s ease";
-    
-    // Scale up and fade out current image
-    image.style.transform = "translate(-50%, -50%) scale(1.1)";
+
+    // Fade out current image
     image.style.opacity = "0";
-    
-    // Change image source and link
+
+    // Change image source and link after fade out
     setTimeout(function() {
-      image.src = "foundationofislam.png";
-      imageLink.href = "https://islam.apgo.ink/foundationofislam";
-      
-      // Scale down and fade in new image
-      setTimeout(function() {
-        image.style.transform = "translate(-50%, -50%) scale(0.9)";
-        image.style.opacity = "1";
-        
-        // Transition to the third image after previous image's opacity is truly 0
-        setTimeout(function() {
-          // Scale down and fade out current image
-          image.style.transform = "translate(-50%, -50%) scale(1.1)";
-          image.style.opacity = "0";
-          
-          // Change image source and link to the third image
-          setTimeout(function() {
-            image.src = "ramadan.png";
-            imageLink.href = "https://islam.apgo.ink/ramadan";
-            
-            // Scale up and fade in new image
-            setTimeout(function() {
-              image.style.transform = "translate(-50%, -50%) scale(0.9)";
-              image.style.opacity = "1";
-              
-              // Transition to the fourth image after previous image's opacity is truly 0
-              setTimeout(function() {
-                // Scale down and fade out current image
-                image.style.transform = "translate(-50%, -50%) scale(1.1)";
-                image.style.opacity = "0";
-                
-                // Change image source and link to the fourth image
-                setTimeout(function() {
-                  image.src = "noblequran.png";
-                  imageLink.href = "https://islam.apgo.ink/noblequran";
-                  
-                  // Scale up and fade in new image
-                  setTimeout(function() {
-                    image.style.transform = "translate(-50%, -50%) scale(0.9)";
-                    image.style.opacity = "1";
-                  }, 400); // Adjusted timing for smoother transition
-                }, 400); // Adjusted timing for smoother transition
-              }, 4000); // Transition to the fourth image after 4 seconds
-            }, 400); // Adjusted timing for smoother transition
-          }, 400); // Adjusted timing for smoother transition
-        }, 400); // Adjusted timing for smoother transition
-      }, 400); // Adjusted timing for smoother transition
-    }, 400); // Adjusted timing for smoother transition
-  }, 2000); // Transition after 2 seconds
+      currentIndex = (currentIndex + 1) % images.length;
+      image.src = images[currentIndex];
+      imageLink.href = links[currentIndex];
+      image.style.opacity = "1";
+    }, 800); // Delayed to match the animation duration
+  }
+
+  // Transition to the next image every 8 seconds
+  setInterval(transitionImage, 8000);
 </script>
 </body>
 </html>
