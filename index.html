@@ -4,64 +4,62 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Islamic Website</title>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 <style>
   /* Style for the body */
   body {
-    background-color: #333; /* Dark background color */
-    font-family: 'Open Sans', sans-serif;
-    color: #fff; /* White text color */
+    background-image: url('background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Arial', sans-serif;
     margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: #fff;
   }
 
   /* Style for the container */
   .container {
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
-    max-width: 90%; /* Limit maximum width */
-    margin: auto;
-    padding: 20px;
+    width: 80%;
+    max-width: 1200px; /* Limit maximum width */
+    margin-top: 50px;
   }
 
   /* Style for the title */
-  .title {
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-
-  /* Style for the rows */
-  .row {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
+  h1 {
+    font-size: 36px;
     margin-bottom: 20px;
   }
 
-  /* Style for the squircles */
-  .squircle {
-    width: 300px;
-    height: 300px;
+  /* Style for the circles */
+  .circle {
+    width: 250px;
+    height: 250px;
     border-radius: 50%;
-    background-color: #eaeaea; /* Default background color */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
-    transition: all 0.3s ease; /* Transition effect for smooth hover */
-    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.2); /* Background with low transparency */
+    margin: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Shadow effect */
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
   }
 
   /* Hover effect */
-  .squircle:hover {
-    transform: scale(1.1); /* Scale effect on hover */
-    filter: brightness(120%); /* Brightness effect on hover */
+  .circle:hover {
+    transform: scale(1.05); /* Scale effect on hover */
   }
 
   /* Style for the images */
-  .squircle img {
+  .circle img {
     width: 80%;
     height: auto;
   }
@@ -69,34 +67,41 @@
 </head>
 <body>
 
-<div class="container">
-  <!-- Title -->
-  <div class="title">Explore Islam Peacefully</div>
+<h1>Explore Islam Peacefully</h1>
 
-  <!-- First row -->
-  <div class="row">
-    <!-- Squircle for Foundation of Islam -->
-    <a href="https://islam.apgo.ink/foundationofislam" class="squircle">
+<div class="container">
+  <div>
+    <!-- Circle for Foundation of Islam -->
+    <a href="https://islam.apgo.ink/foundationofislam" class="circle">
       <img src="foundationofislam.png" alt="Foundation of Islam">
     </a>
-
-    <!-- Squircle for Allah -->
-    <a href="https://islam.apgo.ink/allah" class="squircle">
-      <img src="allah.png" alt="Allah">
-    </a>
+    <p style="text-align: center;">Foundation of Islam</p>
   </div>
 
-  <!-- Second row -->
-  <div class="row">
-    <!-- Squircle for Noble Quran -->
-    <a href="https://islam.apgo.ink/noblequran" class="squircle">
+  <div>
+    <!-- Circle for Allah -->
+    <a href="https://islam.apgo.ink/allah" class="circle">
+      <img src="allah.png" alt="Allah">
+    </a>
+    <p style="text-align: center;">Allah</p>
+  </div>
+</div>
+
+<div class="container">
+  <div>
+    <!-- Circle for Noble Quran -->
+    <a href="https://islam.apgo.ink/noblequran" class="circle">
       <img src="noblequran.png" alt="Noble Quran">
     </a>
+    <p style="text-align: center;">Noble Quran</p>
+  </div>
 
-    <!-- Squircle for Ramadan -->
-    <a href="https://islam.apgo.ink/ramadan" class="squircle">
+  <div>
+    <!-- Circle for Ramadan -->
+    <a href="https://islam.apgo.ink/ramadan" class="circle">
       <img src="ramadan.png" alt="Ramadan">
     </a>
+    <p style="text-align: center;">Ramadan</p>
   </div>
 </div>
 
