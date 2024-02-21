@@ -56,6 +56,24 @@
     transform: translate(-50%, -50%) scale(1.1); /* Scale up on hover */
     filter: brightness(1.2); /* Increase brightness on hover */
   }
+  .bottom-section {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    text-align: center;
+    width: 100%;
+  }
+  .bottom-section a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.8s ease; /* Smooth transition for text color */
+  }
+  .bottom-section a:hover {
+    color: lightblue;
+  }
 </style>
 </head>
 <body>
@@ -64,6 +82,11 @@
   <img src="allah.png" alt="Allah" class="centered-image active" id="image" width="300"> <!-- Adjust the width -->
 </a>
 <!-- Your content goes here -->
+
+<div class="bottom-section">
+  <a href="https://mission.apgo.ink/donate" target="_blank">Donate</a>
+  <a href="https://mission.apgo.ink/apgo" target="_blank">About Us</a>
+</div>
 
 <script>
   const images = ['allah.png', 'foundationofislam.png', 'ramadan.png', 'noblequran.png'];
@@ -97,9 +120,9 @@
         setTimeout(() => {
           image.style.opacity = 1;
           isTransitioning = false; // Reset transitioning flag
-        }, 800); // Adjust the duration of the fade in
+        }, 300); // Adjust the duration of the fade in
       };
-    }, 800); // Adjust the duration of the fade out
+    }, 300); // Adjust the duration of the fade out
   }
 
   setInterval(changeImage, 4000); // Change image every 4 seconds
