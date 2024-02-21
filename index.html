@@ -74,21 +74,23 @@
   .bottom-section a:hover {
     color: lightblue;
   }
-  .left-section,
-  .right-section {
+  .side-text {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    color: white;
-    font-size: 14px;
-    text-align: center;
     width: 150px; /* Adjust width as needed */
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 10px;
+    opacity: 0.8;
   }
-  .left-section {
-    left: 20px; /* Adjust left position as needed */
+  .left-side-text {
+    left: 0;
   }
-  .right-section {
-    right: 20px; /* Adjust right position as needed */
+  .right-side-text {
+    right: 0;
   }
 </style>
 </head>
@@ -99,132 +101,54 @@
 </a>
 <!-- Your content goes here -->
 
-<div class="left-section" id="leftSection"></div>
-<div class="right-section" id="rightSection"></div>
-
 <div class="bottom-section">
   <a href="https://mission.apgo.ink/donate" target="_blank">Donate</a>
   <a href="https://mission.apgo.ink/apgo" target="_blank">About Us</a>
 </div>
 
-<script>
-  const weeklyTexts = [
-    { type: 'Prayer', content: "O Allah, guide me on the straight path." },
-    { type: 'Advice', content: "Be kind to your parents; they are your paradise or your hell." },
-    { type: 'Verse (Quran 3:185)', content: "Every soul will taste death, and you will only be given your full compensation on the Day of Resurrection. So, he who is drawn away from the Fire and admitted to Paradise has attained [his desire]. And what is the life of this world except the enjoyment of delusion." },
-    { type: 'Quote', content: "The best among you are those who have the best manners and character." },
-    { type: 'Saying', content: "Patience is the key to paradise." },
-    { type: 'Prayer', content: "O Allah, forgive me and have mercy on me, and guide me and provide for me." },
-    { type: 'Advice', content: "Speak only when your words are more beautiful than silence." },
-    { type: 'Verse (Quran 2:255)', content: "Allah! There is no deity except Him, the Ever-Living, the Sustainer of existence..." },
-    { type: 'Quote', content: "Actions are judged by their intentions." },
-    { type: 'Saying', content: "Do not be among those who lose faith when they suffer afflictions." },
-    { type: 'Prayer', content: "O Allah, grant me wisdom and understanding." },
-    { type: 'Advice', content: "Treat others as you wish to be treated." },
-    { type: 'Verse (Quran 16:90)', content: "Indeed, Allah orders justice and good conduct and giving to relatives and forbids immorality and bad conduct and oppression. He admonishes you that perhaps you will be reminded." },
-    { type: 'Quote', content: "The tongue is the mirror of the heart; control it and you control yourself." },
-    { type: 'Saying', content: "The believer's shade on the Day of Resurrection will be his charity." },
-    { type: 'Prayer', content: "O Allah, make me among those who are grateful." },
-    { type: 'Advice', content: "Be sincere in your worship; Allah sees what is hidden in your heart." },
-    { type: 'Verse (Quran 9:71)', content: "The believing men and believing women are allies of one another. They enjoin what is right and forbid what is wrong..." },
-    { type: 'Quote', content: "Do not despair of the mercy of Allah." },
-    { type: 'Saying', content: "The best way to defeat your enemy is to make him your friend." },
-    { type: 'Prayer', content: "O Allah, grant me patience in times of trial." },
-    { type: 'Advice', content: "Remember that this life is temporary; strive for the eternal." },
-    { type: 'Verse (Quran 2:186)', content: "And when My servants ask you, [O Muhammad], concerning Me - indeed I am near. I respond to the invocation of the supplicant when he calls upon Me..." },
-    { type: 'Quote', content: "The remembrance of Allah is the greatest force against adversities." },
-    { type: 'Saying', content: "A believer's faith is not complete until his heart is content with Allah's decree." },
-    { type: 'Prayer', content: "O Allah, purify my heart from hypocrisy and arrogance." },
-    { type: 'Advice', content: "Seek knowledge from the cradle to the grave." },
-    { type: 'Verse (Quran 3:159)', content: "So by mercy from Allah, [O Muhammad], you were lenient with them. And if you had been rude [in speech] and harsh in heart, they would have disbanded from about you..." },
-    { type: 'Quote', content: "The true beauty of a person lies in their character." },
-    { type: 'Saying', content: "Your wealth and children are but a trial." },
-    { type: 'Prayer', content: "O Allah, protect me from evil intentions and harmful actions." },
-    { type: 'Advice', content: "Forgive others, as you would like to be forgiven." },
-    { type: 'Verse (Quran 13:28)', content: "Those who have believed and whose hearts are assured by the remembrance of Allah. Unquestionably, by the remembrance of Allah hearts are assured." },
-    { type: 'Quote', content: "The doors of repentance are always open." },
-    { type: 'Saying', content: "Kindness is a mark of faith, and whoever is not kind has no faith." },
-    { type: 'Prayer', content: "O Allah, grant me strength to resist temptation." },
-    { type: 'Advice', content: "Be moderate in all aspects of life." },
-    { type: 'Verse (Quran 22:77)', content: "O you who have believed, bow and prostrate and worship your Lord and do good - that you may succeed." },
-    { type: 'Quote', content: "The most beloved deeds to Allah are those done consistently, even if they are small." },
-    { type: 'Saying', content: "The best charity is that given in secret." },
-    { type: 'Prayer', content: "O Allah, grant me sincerity in my actions." },
-    { type: 'Advice', content: "Be truthful in your speech; falsehood leads to corruption." },
-    { type: 'Verse (Quran 20:130)', content: "So be patient over what they say and exalt [Allah] with praise of your Lord before the rising of the sun and before its setting; and during periods of the night [exalt Him] and at the ends of the day, that you may be satisfied." },
-    { type: 'Quote', content: "The believer is like a bee, he feeds on what is pure and wholesome." },
-    { type: 'Saying', content: "Whoever believes in Allah and the Last Day should say what is good or keep silent." },
-    { type: 'Prayer', content: "O Allah, protect me from arrogance and pride." },
-    { type: 'Advice', content: "Be mindful of the words you speak, for they may become your actions." },
-    { type: 'Verse (Quran 29:69)', content: "And those who strive for Us - We will surely guide them to Our ways. And indeed, Allah is with the doers of good." },
-    { type: 'Quote', content: "The happiest people are those who bring happiness to others." },
-    { type: 'Saying', content: "The believer's heart is the sanctuary of Allah; do not let anything impure reside there." },
-    { type: 'Prayer', content: "O Allah, grant me contentment with what You have decreed for me." },
-    { type: 'Advice', content: "Trust in Allah's plan; He knows what is best for you." },
-    { type: 'Verse (Quran 3:133)', content: "And hasten to forgiveness from your Lord and a garden as wide as the heavens and earth, prepared for the righteous." },
-    { type: 'Quote', content: "The greatest jihad is to battle your own soul, to fight the evil within yourself." },
-    { type: 'Saying', content: "Do not let your difficulties fill you with anxiety; after all, it is only in the darkest nights that the stars shine more brightly." },
-    { type: 'Prayer', content: "O Allah, guide me to what is best for me in this life and the Hereafter." },
-    { type: 'Advice', content: "Be patient in adversity, and grateful in prosperity." },
-    { type: 'Verse (Quran 2:190)', content: "Fight in the way of Allah those who fight you but do not transgress. Indeed. Allah does not like transgressors." },
-    { type: 'Quote', content: "The most beloved deed to Allah is to make a Muslim happy." },
-    { type: 'Saying', content: "A moment of patience in a moment of anger prevents a thousand moments of regret." },
-    { type: 'Prayer', content: "O Allah, grant me guidance when I am lost." },
-    { type: 'Advice', content: "Be patient with others' shortcomings, as you would like them to be patient with yours." },
-    { type: 'Verse (Quran 13:29)', content: "Indeed, those who have believed and done righteous deeds - the Most Merciful will appoint for them affection." },
-    { type: 'Quote', content: "Your smile for your brother is charity." },
-    { type: 'Saying', content: "The best conversation is that which is filled with wisdom." },
-    { type: 'Prayer', content: "O Allah, protect me from arrogance and pride." },
-    { type: 'Advice', content: "Be mindful of the words you speak, for they may become your actions." },
-    { type: 'Verse (Quran 33:59)', content: "O Prophet, tell your wives and your daughters and the women of the believers to bring down over themselves [part] of their outer garments. That is more suitable that they will be known and not be abused..." },
-    { type: 'Quote', content: "Every soul will taste death, so make the most of your time in this world." },
-    { type: 'Saying', content: "Do not look down upon any act of kindness, even if it is just smiling at your brother." },
-    { type: 'Prayer', content: "O Allah, grant me patience in times of trial." },
-    { type: 'Advice', content: "Be mindful of your prayers, for they are the connection between you and your Creator." },
-    { type: 'Verse (Quran 13:11)', content: "For each one are successive [angels] before and behind him who protect him by the decree of Allah. Indeed, Allah will not change the condition of a people until they change what is in themselves..." },
-    { type: 'Quote', content: "The best gift you can give someone is du'a (prayer)." },
-    { type: 'Saying', content: "The believer does not slander, curse, or speak in an obscene or foul manner." },
-    { type: 'Prayer', content: "O Allah, grant me patience and perseverance." },
-    { type: 'Advice', content: "Seek forgiveness for your sins, for none is perfect except Allah." },
-    { type: 'Verse (Quran 6:54)', content: "And when those come to you who believe in Our verses, say, 'Peace be upon you. Your Lord has decreed upon Himself mercy..." },
-    { type: 'Quote', content: "Kindness is a mark of faith, and whoever is not kind has no faith." },
-    { type: 'Saying', content: "Remember Allah in times of ease, and He will remember you in times of difficulty." },
-    { type: 'Prayer', content: "O Allah, grant me sincerity in my actions." },
-    { type: 'Advice', content: "Be mindful of your obligations to Allah and to fellow human beings." },
-    { type: 'Verse (Quran 64:16)', content: "So fear Allah as much as you are able and listen and obey and spend [in the way of Allah]; it is better for your selves..." },
-    { type: 'Quote', content: "The best among you are those who have the best manners and character." }
-  ];
+<div class="side-text left-side-text">
+  <p>“Kindness is a mark of faith, and whoever is not kind has no faith.”</p>
+</div>
 
+<div class="side-text right-side-text">
+  <p>“And We have certainly made the Qur'an easy to remember. So is there any who will remember?” (Surah Al-Qamar, 54:17)</p>
+</div>
+
+<script>
+  const images = ['allah.png', 'foundationofislam.png', 'ramadan.png', 'noblequran.png'];
+  const links = ['https://islam.apgo.ink/allah', 'https://islam.apgo.ink/foundationofislam', 'https://islam.apgo.ink/ramadan', 'https://islam.apgo.ink/quran'];
   let currentIndex = 0;
+  let isTransitioning = false;
 
   function changeImage() {
+    if (isTransitioning) return; // Return if already transitioning
+    isTransitioning = true; // Set transitioning flag
+
     const image = document.getElementById('image');
     const imageLink = document.getElementById('imageLink');
-    
-    // Hide the current image
-    image.classList.remove('active');
-    
-    // Move to the next image
-    currentIndex = (currentIndex + 1) % weeklyTexts.length;
-    
-    // Preload the next image
-    const nextImage = new Image();
-    nextImage.src = images[currentIndex];
-    nextImage.onload = function() {
-      // Set the next image
-      image.src = images[currentIndex];
-      imageLink.href = links[currentIndex];
-      
-      // Show the next image
-      image.classList.add('active');
-    };
 
-    // Change the left and right sections text
-    const leftSection = document.getElementById('leftSection');
-    const rightSection = document.getElementById('rightSection');
+    // Fade out the current image
+    image.style.opacity = 0;
 
-    leftSection.textContent = weeklyTexts[currentIndex].type + ': ' + weeklyTexts[currentIndex].content;
-    rightSection.textContent = weeklyTexts[(currentIndex + 1) % weeklyTexts.length].type + ': ' + weeklyTexts[(currentIndex + 1) % weeklyTexts.length].content;
+    setTimeout(() => {
+      // Move to the next image
+      currentIndex = (currentIndex + 1) % images.length;
+
+      // Preload the next image
+      const nextImage = new Image();
+      nextImage.src = images[currentIndex];
+      nextImage.onload = function() {
+        // Set the next image
+        image.src = images[currentIndex];
+        imageLink.href = links[currentIndex];
+
+        // Fade in the next image
+        setTimeout(() => {
+          image.style.opacity = 1;
+          isTransitioning = false; // Reset transitioning flag
+        }, 300); // Adjust the duration of the fade in
+      };
+    }, 300); // Adjust the duration of the fade out
   }
 
   setInterval(changeImage, 4000); // Change image every 4 seconds
