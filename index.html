@@ -69,28 +69,37 @@
   const images = ['allah.png', 'foundationofislam.png', 'ramadan.png', 'noblequran.png'];
   const links = ['https://islam.apgo.ink/allah', 'https://islam.apgo.ink/foundationofislam', 'https://islam.apgo.ink/ramadan', 'https://islam.apgo.ink/quran'];
   let currentIndex = 0;
+  let isTransitioning = false;
 
   function changeImage() {
+    if (isTransitioning) return; // Return if already transitioning
+    isTransitioning = true; // Set transitioning flag
+
     const image = document.getElementById('image');
     const imageLink = document.getElementById('imageLink');
-    
-    // Hide the current image
-    image.classList.remove('active');
-    
-    // Move to the next image
-    currentIndex = (currentIndex + 1) % images.length;
-    
-    // Preload the next image
-    const nextImage = new Image();
-    nextImage.src = images[currentIndex];
-    nextImage.onload = function() {
-      // Set the next image
-      image.src = images[currentIndex];
-      imageLink.href = links[currentIndex];
-      
-      // Show the next image
-      image.classList.add('active');
-    };
+
+    // Fade out the current image
+    image.style.opacity = 0;
+
+    setTimeout(() => {
+      // Move to the next image
+      currentIndex = (currentIndex + 1) % images.length;
+
+      // Preload the next image
+      const nextImage = new Image();
+      nextImage.src = images[currentIndex];
+      nextImage.onload = function() {
+        // Set the next image
+        image.src = images[currentIndex];
+        imageLink.href = links[currentIndex];
+
+        // Fade in the next image
+        setTimeout(() => {
+          image.style.opacity = 1;
+          isTransitioning = false; // Reset transitioning flag
+        }, 300); // Adjust the duration of the fade in
+      };
+    }, 300); // Adjust the duration of the fade out
   }
 
   setInterval(changeImage, 4000); // Change image every 4 seconds
