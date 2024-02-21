@@ -93,6 +93,20 @@
   .right-side-text {
     right: 20px;
   }
+  .middle-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-style: italic;
+    text-decoration: underline;
+    font-size: 20px;
+    transition: color 0.8s ease; /* Smooth transition for text color */
+  }
+  .middle-text:hover {
+    color: lightblue;
+  }
 </style>
 </head>
 <body>
@@ -101,6 +115,8 @@
   <img src="allah.png" alt="Allah" class="centered-image active" id="image" width="300"> <!-- Adjust the width -->
 </a>
 <!-- Your content goes here -->
+
+<div class="middle-text">La ilaha illa Allah</div>
 
 <div class="bottom-section">
   <a href="https://mission.apgo.ink/donate" target="_blank">Donate</a>
