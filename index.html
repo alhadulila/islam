@@ -14,6 +14,7 @@
     background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('background.png') no-repeat;
     background-size: cover;
     background-position: center center; /* Display the center part of the background image */
+    transition: background-image 0.8s ease; /* Smooth transition for background image */
   }
   .title {
     position: absolute;
@@ -25,6 +26,7 @@
     font-weight: bold;
     text-align: center;
     text-decoration: none; /* Remove default underline */
+    transition: color 0.8s ease; /* Smooth transition for text color */
   }
   .title::after {
     content: '';
@@ -35,6 +37,7 @@
     border-radius: 50px; /* Adjust the border radius to make it curved */
     margin: 0 auto; /* Center the curved underline */
     margin-top: 10px; /* Adjust the spacing between the title and the underline */
+    transition: background-color 0.8s ease; /* Smooth transition for underline color */
   }
   .centered-image {
     position: absolute;
