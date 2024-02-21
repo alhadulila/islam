@@ -92,6 +92,14 @@
   .right-side-text {
     right: 20px; /* Adjust position */
   }
+  .bottom-text {
+    position: absolute;
+    bottom: 50px; /* Adjust position */
+    left: 50%;
+    transform: translateX(-50%);
+    font-style: italic; /* Set font style to italic */
+    color: white;
+  }
 </style>
 </head>
 <body>
@@ -114,9 +122,13 @@
   <p><i>"So remember Me; I will remember you. And be grateful to Me and do not deny Me." (Surah Al-Baqarah, 2:152)</i></p>
 </div>
 
+<div class="bottom-text">
+  <p><i>La ilaha illallah</i></p>
+</div>
+
 <script>
-  const images = ['allah.png', 'foundationofislam.png', 'ramadan.png', 'noblequran.png', 'islamic_calligraphy.png'];
-  const links = ['https://islam.apgo.ink/allah', 'https://islam.apgo.ink/foundationofislam', 'https://islam.apgo.ink/ramadan', 'https://islam.apgo.ink/quran', 'https://islam.apgo.ink/calligraphy'];
+  const images = ['allah.png', 'foundationofislam.png', 'ramadan.png', 'noblequran.png'];
+  const links = ['https://islam.apgo.ink/allah', 'https://islam.apgo.ink/foundationofislam', 'https://islam.apgo.ink/ramadan', 'https://islam.apgo.ink/quran'];
   let currentIndex = 0;
 
   function changeImage() {
