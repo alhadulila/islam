@@ -123,49 +123,53 @@
   <a href="https://mission.apgo.ink/apgo" target="_blank">About Us</a>
 </div>
 
-<div class="side-text left-side-text">
-  <p>“Kindness is a mark of faith, and whoever is not kind has no faith.”</p>
-</div>
+<div class="side-text left-side-text" id="leftSideText"></div>
 
-<div class="side-text right-side-text">
-  <p>“And We have certainly made the Qur'an easy to remember. So is there any who will remember?” <br> (Surah Al-Qamar, 54:17)</p>
-</div>
+<div class="side-text right-side-text" id="rightSideText"></div>
 
 <script>
   const images = ['allah.png', 'foundationofislam.png', 'ramadan.png', 'noblequran.png'];
   const links = ['https://islam.apgo.ink/allah', 'https://islam.apgo.ink/foundationofislam', 'https://islam.apgo.ink/ramadan', 'https://islam.apgo.ink/quran'];
-  let currentIndex = 0;
-  let isTransitioning = false;
+  const leftTexts = ["“Kindness is a mark of faith, and whoever is not kind has no faith.”", "“Do not lose hope, nor be sad.”", "“And He is with you wherever you are.”", "“So remember Me; I will remember you.”", "“Indeed, with hardship, there is relief.”"];
+  const rightTexts = ["“And We have certainly made the Qur'an easy to remember. So is there any who will remember?” (Surah Al-Qamar, 54:17)", "“Call upon Me; I will respond to you.” (Surah Ghafir, 40:60)", "“And whoever relies upon Allah, then He is sufficient for him.” (Surah At-Talaq, 65:3)", "“And the servants of the Most Merciful are those who walk upon the earth easily, and when the ignorant address them [harshly], they say [words of] peace.” (Surah Al-Furqan, 25:63)"];
+  
+  function getRandomIndex(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+  function setRandomTexts() {
+    const leftText = leftTexts[getRandomIndex(leftTexts.length)];
+    const rightText = rightTexts[getRandomIndex(rightTexts.length)];
+    document.getElementById('leftSideText').innerHTML = leftText;
+    document.getElementById('rightSideText').innerHTML = rightText;
+  }
+
+  setRandomTexts(); // Set initial texts
 
   function changeImage() {
-    if (isTransitioning) return; // Return if already transitioning
-    isTransitioning = true; // Set transitioning flag
-
     const image = document.getElementById('image');
     const imageLink = document.getElementById('imageLink');
+    
+    // Hide the current image
+    image.classList.remove('active');
+    
+    // Move to the next image
+    currentIndex = (currentIndex + 1) % images.length;
+    
+    // Preload the next image
+    const nextImage = new Image();
+    nextImage.src = images[currentIndex];
+    nextImage.onload = function() {
+      // Set the next image
+      image.src = images[currentIndex];
+      imageLink.href = links[currentIndex];
+      
+      // Show the next image
+      image.classList.add('active');
+    };
 
-    // Fade out the current image
-    image.style.opacity = 0;
-
-    setTimeout(() => {
-      // Move to the next image
-      currentIndex = (currentIndex + 1) % images.length;
-
-      // Preload the next image
-      const nextImage = new Image();
-      nextImage.src = images[currentIndex];
-      nextImage.onload = function() {
-        // Set the next image
-        image.src = images[currentIndex];
-        imageLink.href = links[currentIndex];
-
-        // Fade in the next image
-        setTimeout(() => {
-          image.style.opacity = 1;
-          isTransitioning = false; // Reset transitioning flag
-        }, 300); // Adjust the duration of the fade in
-      };
-    }, 300); // Adjust the duration of the fade out
+    // Set random texts
+    setRandomTexts();
   }
 
   setInterval(changeImage, 4000); // Change image every 4 seconds
