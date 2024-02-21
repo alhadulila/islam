@@ -107,33 +107,19 @@
 </div>
 
 <div class="side-text left-side-text">
-  <p><i>"And whoever fears Allah - He will make for him a way out and will provide for him from where he does not expect. And whoever relies upon Allah - then He is sufficient for him. Indeed, Allah will accomplish His purpose. Allah has already set for everything a [decreed] extent."</i> (Surah At-Talaq, 65:2-3)</p>
+  <p><i>"Indeed, Allah does not do injustice, [even] as much as an atom's weight; while if there is a good deed, He multiplies it and gives from Himself a great reward." (Surah An-Nisa, 4:40)</i></p>
 </div>
 
 <div class="side-text right-side-text">
-  <p><i>"So remember Me; I will remember you. And be grateful to Me and do not deny Me."</i> (Surah Al-Baqarah, 2:152)</p>
+  <p><i>"So remember Me; I will remember you. And be grateful to Me and do not deny Me." (Surah Al-Baqarah, 2:152)</i></p>
 </div>
 
 <script>
-  const images = ['allah.png', 'foundationofislam.png', 'ramadan.png', 'noblequran.png', 'islamic_calligraphy.png']; // Added the missing image
-  const links = ['https://islam.apgo.ink/allah', 'https://islam.apgo.ink/foundationofislam', 'https://islam.apgo.ink/ramadan', 'https://islam.apgo.ink/quran', 'https://islam.apgo.ink/calligraphy']; // Adjusted the links array
-  const leftTexts = [
-    "<i>\"Indeed, Allah does not do injustice, [even] as much as an atom's weight; while if there is a good deed, He multiplies it and gives from Himself a great reward.\"</i> (Surah An-Nisa, 4:40)",
-    "<i>\"And when My servants ask you concerning Me, indeed I am near. I respond to the invocation of the supplicant when he calls upon Me. So let them respond to Me [by obedience] and believe in Me that they may be [rightly] guided.\"</i> (Surah Al-Baqarah, 2:186)",
-    "<i>\"Say, 'Indeed, my prayer, my rites of sacrifice, my living and my dying are for Allah, Lord of the worlds.\"</i> (Surah Al-An'am, 6:162)"
-  ];
-  const rightTexts = [
-    "<i>\"And indeed, there is among you he who lingers behind; and if disaster strikes you, he says, 'Allah has favored me in that I was not present with them.'\"</i> (Surah An-Nisa, 4:72)",
-    "<i>\"So remember Me; I will remember you. And be grateful to Me and do not deny Me.\"</i> (Surah Al-Baqarah, 2:152)",
-    "<i>\"And your Lord is the Forgiving, Full of Mercy. If He were to impose blame upon them for what they earned, He would have hastened for them the punishment. But for them is an appointment from which they will never find an escape.\"</i> (Surah Al-Kahf, 18:58)"
-  ];
+  const images = ['allah.png', 'foundationofislam.png', 'ramadan.png', 'noblequran.png', 'islamic_calligraphy.png'];
+  const links = ['https://islam.apgo.ink/allah', 'https://islam.apgo.ink/foundationofislam', 'https://islam.apgo.ink/ramadan', 'https://islam.apgo.ink/quran', 'https://islam.apgo.ink/calligraphy'];
   let currentIndex = 0;
-  let isTransitioning = false;
 
   function changeImage() {
-    if (isTransitioning) return; // Return if already transitioning
-    isTransitioning = true; // Set transitioning flag
-
     const image = document.getElementById('image');
     const imageLink = document.getElementById('imageLink');
 
@@ -144,37 +130,18 @@
       // Move to the next image
       currentIndex = (currentIndex + 1) % images.length;
 
-      // Preload the next image
-      const nextImage = new Image();
-      nextImage.src = images[currentIndex];
-      nextImage.onload = function() {
-        // Set the next image
-        image.src = images[currentIndex];
-        imageLink.href = links[currentIndex];
+      // Set the next image
+      image.src = images[currentIndex];
+      imageLink.href = links[currentIndex];
 
-        // Fade in the next image
-        setTimeout(() => {
-          image.style.opacity = 1;
-          isTransitioning = false; // Reset transitioning flag
-        }, 300); // Adjust the duration of the fade in
-      };
+      // Fade in the next image
+      setTimeout(() => {
+        image.style.opacity = 1;
+      }, 300); // Adjust the duration of the fade in
     }, 300); // Adjust the duration of the fade out
   }
 
-  function getRandomText(texts) {
-    const index = Math.floor(Math.random() * texts.length);
-    return texts[index];
-  }
-
-  // Set random texts for left and right sides
-  document.querySelector('.left-side-text').innerHTML = getRandomText(leftTexts);
-  document.querySelector('.right-side-text').innerHTML = getRandomText(rightTexts);
-
-  setInterval(() => {
-    changeImage(); // Change image every 4 seconds
-    document.querySelector('.left-side-text').innerHTML = getRandomText(leftTexts); // Change left text
-    document.querySelector('.right-side-text').innerHTML = getRandomText(rightTexts); // Change right text
-  }, 4000);
+  setInterval(changeImage, 4000); // Change image every 4 seconds
 </script>
 
 </body>
